@@ -3,6 +3,7 @@
     <string name="button_addEntry">Add Entry</string>
     <string name="hint_entryTitle">Entry Title</string>
     <string name="hint_entryDescription">Description </string>
+    <string name="menu_addEntry">Add</string>
 
 
 </resources>
