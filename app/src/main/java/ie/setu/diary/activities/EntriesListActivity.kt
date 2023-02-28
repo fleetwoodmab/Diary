@@ -16,21 +16,35 @@ import ie.setu.diary.main.MainApp
 class EntriesListActivity : AppCompatActivity() {
     lateinit var app: MainApp
     private lateinit var binding: ActivityEntriesListBinding
-
+    private lateinit var adapter: EntryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityEntriesListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
 
         app = application as MainApp
+        adapter = EntryAdapter(app.entries)
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = EntryAdapter(app.entries)
+        binding.recyclerView.adapter = adapter
 
+        adapter.setOnItemClickListener(object : EntryAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val launcherIntent = Intent(this@EntriesListActivity, DiaryActivity::class.java)
+                launcherIntent.putExtra("position", position)
+                startActivity(launcherIntent)
+            }
+
+            override fun notifyItemRemoved(adapterPosition: Int) {
+                app.entries.removeAt(adapterPosition)
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,7 +71,6 @@ class EntriesListActivity : AppCompatActivity() {
                 notifyItemRangeChanged(0,app.entries.size)
             }
         }
-
-
 }
+
 
