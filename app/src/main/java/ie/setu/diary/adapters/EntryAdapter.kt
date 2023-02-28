@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import ie.setu.diary.databinding.CardEntryBinding
 import ie.setu.diary.models.DiaryModel
 
-class EntryAdapter constructor(private var entries: List<DiaryModel>) :
+interface EntryListener {
+    fun onEntryClick(entry: DiaryModel)
+}
+class EntryAdapter constructor(private var entries: List<DiaryModel>, private val listener: EntryListener) :
         RecyclerView.Adapter<EntryAdapter.MainHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -18,7 +21,7 @@ class EntryAdapter constructor(private var entries: List<DiaryModel>) :
 
         override fun onBindViewHolder(holder: MainHolder, position: Int) {
             val entry = entries[holder.adapterPosition]
-            holder.bind(entry)
+            holder.bind(entry, listener)
         }
 
         override fun getItemCount(): Int = entries.size
@@ -26,9 +29,12 @@ class EntryAdapter constructor(private var entries: List<DiaryModel>) :
         class MainHolder(private val binding: CardEntryBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(entry: DiaryModel) {
+            fun bind(entry: DiaryModel, listener: EntryListener) {
                 binding.entryTitle.text = entry.title
                 binding.description.text = entry.description
+                binding.root.setOnClickListener { listener.onEntryClick(entry) }
             }
         }
     }
+
+

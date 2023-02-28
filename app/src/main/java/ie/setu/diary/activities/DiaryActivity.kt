@@ -30,21 +30,22 @@ class DiaryActivity : AppCompatActivity() {
         app = application as MainApp
         i("Diary Activity started...")
 
+        if (intent.hasExtra("entry_edit")) {
+            entry = intent.extras?.getParcelable("entry_edit")!!
+            binding.entryTitle.setText(entry.title)
+            binding.description.setText(entry.description)
+        }
+
         binding.btnAdd.setOnClickListener() {
             entry.title = binding.entryTitle.text.toString()
             entry.description = binding.description.text.toString()
             if (entry.title.isNotEmpty()) {
-                app.entries.add(entry.copy())
-                i("add Button Pressed: $entry")
-                for (i in app.entries.indices) {
-                    i("Entry[$i]:${this.app.entries[i]}")
-                }
-            setResult(RESULT_OK)
-            finish()
-        }
+                app.entries.create(entry.copy())
+                setResult(RESULT_OK)
+                finish()
+            }
             else {
-                Snackbar
-                    .make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+                Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
                     .show()
             }
         }

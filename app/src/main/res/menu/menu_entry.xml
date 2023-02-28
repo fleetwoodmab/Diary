@@ -7,4 +7,5 @@
         android:id="@+id/item_cancel"
         android:title="@string/menu_cancelEntry"
         app:showAsAction="always"/>
+
 </menu>

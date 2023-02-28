@@ -10,10 +10,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.setu.diary.R
 import ie.setu.diary.adapters.EntryAdapter
+import ie.setu.diary.adapters.EntryListener
 import ie.setu.diary.databinding.ActivityEntriesListBinding
 import ie.setu.diary.main.MainApp
+import ie.setu.diary.models.DiaryModel
 
-class EntriesListActivity : AppCompatActivity() {
+class EntriesListActivity : AppCompatActivity(), EntryListener {
     lateinit var app: MainApp
     private lateinit var binding: ActivityEntriesListBinding
 
@@ -29,7 +31,8 @@ class EntriesListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = EntryAdapter(app.entries)
+        binding.recyclerView.adapter = EntryAdapter(app.entries.findAll(),this)
+
 
     }
 
@@ -48,13 +51,30 @@ class EntriesListActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onEntryClick(entry: DiaryModel) {
+        val launcherIntent = Intent(this, DiaryActivity::class.java)
+        launcherIntent.putExtra("entry_edit", entry)
+        getClickResult.launch(launcherIntent)
+    }
+
+    private val getClickResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0,app.entries.findAll().size)
+            }
+        }
+
+
     private val getResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.entries.size)
+                notifyItemRangeChanged(0,app.entries.findAll().size)
             }
         }
 
