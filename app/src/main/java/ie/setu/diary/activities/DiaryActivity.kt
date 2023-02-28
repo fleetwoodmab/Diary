@@ -37,6 +37,7 @@ class DiaryActivity : AppCompatActivity() {
             binding.btnAdd.text=getString(R.string.button_editEntry)
         }
 
+
         binding.btnAdd.setOnClickListener() {
             entry.title = binding.entryTitle.text.toString()
             entry.description = binding.description.text.toString()
