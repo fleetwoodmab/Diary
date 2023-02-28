@@ -34,13 +34,17 @@ class DiaryActivity : AppCompatActivity() {
             entry = intent.extras?.getParcelable("entry_edit")!!
             binding.entryTitle.setText(entry.title)
             binding.description.setText(entry.description)
+            binding.btnAdd.text=getString(R.string.button_editEntry)
         }
 
         binding.btnAdd.setOnClickListener() {
             entry.title = binding.entryTitle.text.toString()
             entry.description = binding.description.text.toString()
             if (entry.title.isNotEmpty()) {
-                app.entries.create(entry.copy())
+                if(intent.hasExtra("entry_edit")){
+                    app.entries.update(entry.copy())
+                }
+                else  app.entries.create(entry.copy())
                 setResult(RESULT_OK)
                 finish()
             }

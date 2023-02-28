@@ -27,5 +27,15 @@
             android:layout_below="@id/entryTitle"
             tools:text="A Description" />
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="109px"
+            android:text="Delete"
+            tools:layout_editor_absoluteX="148px"
+            tools:layout_editor_absoluteY="266px" />
+
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
