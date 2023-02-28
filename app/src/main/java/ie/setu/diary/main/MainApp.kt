@@ -16,4 +16,6 @@ class MainApp : Application() {
         //entries.add(DiaryModel("today", "soda"))
         //entries.add(DiaryModel("tomorrow", "milk"))
     }
+
+
 }
