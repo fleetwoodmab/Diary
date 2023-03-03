@@ -11,6 +11,10 @@ internal fun getId(): Long {
 class DiaryMemStore : DiaryStore {
     val entries = ArrayList<DiaryModel>()
 
+    fun logAll() {
+        entries.forEach{ i("${it}") }
+    }
+
     override fun findAll(): List<DiaryModel> {
         return entries
     }
@@ -22,15 +26,20 @@ class DiaryMemStore : DiaryStore {
     }
 
     override fun update(entry: DiaryModel) {
-        var foundPlacemark: DiaryModel? = entries.find { p -> p.id == entry.id }
-        if (foundPlacemark != null) {
-            foundPlacemark.title = entry.title
-            foundPlacemark.description = entry.description
+        var foundEntry: DiaryModel? = entries.find { p -> p.id == entry.id }
+        if (foundEntry != null) {
+            foundEntry.title = entry.title
+            foundEntry.description = entry.description
             logAll()
         }
     }
-
-    fun logAll() {
-        entries.forEach{ i("${it}") }
+    /*Word done here*/
+    override fun delete(entry: DiaryModel){
+        var foundEntry: DiaryModel? = entries.find { p -> p.id == entry.id }
+        if (foundEntry != null) {
+            entries.remove(foundEntry)
+        }
     }
 }
+
+

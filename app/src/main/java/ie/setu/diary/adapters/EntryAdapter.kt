@@ -8,6 +8,7 @@ import ie.setu.diary.models.DiaryModel
 
 interface EntryListener {
     fun onEntryClick(entry: DiaryModel)
+    fun onbtnDeleteClick(entry: DiaryModel, position: Int)
 }
 class EntryAdapter(private var entries: List<DiaryModel>, private val listener: EntryListener) :
     RecyclerView.Adapter<EntryAdapter.MainHolder>() {
@@ -34,6 +35,7 @@ class EntryAdapter(private var entries: List<DiaryModel>, private val listener: 
             binding.entryTitle.text = entry.title
             binding.description.text = entry.description
             binding.root.setOnClickListener { listener.onEntryClick(entry) }
+            binding.btnDelete.setOnClickListener{ listener.onbtnDeleteClick(entry, adapterPosition)}
 
 
 
