@@ -1,5 +1,6 @@
 package ie.setu.diary.activities
 
+import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +11,8 @@ import ie.setu.diary.databinding.ActivityDiaryBinding
 import ie.setu.diary.main.MainApp
 import ie.setu.diary.models.DiaryModel
 import timber.log.Timber.i
+import java.text.ParseException
+import java.util.*
 
 class DiaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDiaryBinding
@@ -30,6 +33,10 @@ class DiaryActivity : AppCompatActivity() {
         app = application as MainApp
         i("Diary Activity started...")
 
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.UK)
+
+
+
         if (intent.hasExtra("entry_edit")) {
             entry = intent.extras?.getParcelable("entry_edit")!!
             binding.entryTitle.setText(entry.title)
@@ -40,6 +47,13 @@ class DiaryActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener() {
             entry.title = binding.entryTitle.text.toString()
             entry.description = binding.description.text.toString()
+            try {
+                val date = dateFormat.parse(binding.date.text.toString())
+                entry.date = date
+            } catch (e: ParseException) {
+                Snackbar.make(it,"Invalid date format. Please enter a date in the format dd/MMM/yyyy", Snackbar.LENGTH_LONG)
+                    .show()
+            }
             if (entry.title.isNotEmpty()) {
                 if(intent.hasExtra("entry_edit")){
                     app.entries.update(entry.copy())
@@ -71,4 +85,6 @@ class DiaryActivity : AppCompatActivity() {
     }
 
 }
+
+
 

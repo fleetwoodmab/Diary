@@ -30,6 +30,7 @@ class DiaryMemStore : DiaryStore {
         if (foundEntry != null) {
             foundEntry.title = entry.title
             foundEntry.description = entry.description
+            foundEntry.date = entry.date
             logAll()
         }
     }

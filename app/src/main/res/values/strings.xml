@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Diary</string>
+    <string name="app_name">Reading Diary</string>
     <string name="button_addEntry">Add Entry</string>
     <string name="button_editEntry">Edit Entry</string>
-    <string name="hint_entryTitle">Entry Title</string>
-    <string name="hint_entryDescription">Description </string>
+    <string name="hint_entryTitle">Book Title</string>
+    <string name="hint_entryDescription">Review</string>
+    <string name="hint_entryDate">Date finished </string>
     <string name="menu_addEntry">Add</string>
     <string name="menu_cancelEntry">Cancel</string>
 </resources>

@@ -12,9 +12,6 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         i("Diary started")
-        //entries.add(DiaryModel("yesterday", "water"))
-        //entries.add(DiaryModel("today", "soda"))
-        //entries.add(DiaryModel("tomorrow", "milk"))
     }
 
 
