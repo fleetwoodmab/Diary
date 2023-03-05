@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:elevation="24dp">
+    android:layout_marginBottom="16dp"
+    android:elevation="6dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textSize="30sp"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:typeface="sans"
             tools:text="A Title" />
 
         <TextView
@@ -25,6 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/entryTitle"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:textColor="@color/dark_gray"
             tools:text="A Description" />
 
         <TextView
@@ -32,6 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/description"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:textColor="@color/light_gray"
             tools:text="01/02/03" />
 
         <Button
@@ -40,14 +48,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="38dp"
-            android:layout_marginEnd="22dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:drawableLeft="@drawable/bin"
-            android:text="Del"
-
-            />
-
+            android:textColor="@color/white"
+            android:text="Delete" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

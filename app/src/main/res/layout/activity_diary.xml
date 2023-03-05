@@ -26,7 +26,8 @@
                 android:id="@+id/toolbarAdd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:titleTextColor="@color/colorPrimary" />
+                app:titleTextColor="@color/colorPrimary"
+                android:title="Book Review"/>
         </com.google.android.material.appbar.AppBarLayout>
 
         <ScrollView
@@ -37,13 +38,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="32dp">
 
                 <EditText
                     android:id="@+id/entryTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
                     android:hint="@string/hint_entryTitle"
@@ -52,7 +55,8 @@
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp" />
+                    android:textSize="15sp"
+                    android:layout_weight="1" />
 
                 <EditText
                     android:id="@+id/description"
@@ -65,7 +69,8 @@
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp" />
+                    android:textSize="15sp"
+                    android:layout_weight="1" />
 
                 <EditText
                     android:id="@+id/date"
@@ -78,7 +83,9 @@
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp" />
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    />
 
                 <Button
                     android:id="@+id/btnAdd"
@@ -87,16 +94,16 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="16dp"
                     android:background="@drawable/rounded_button"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:text="@string/button_addEntry"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"
+                    android:elevation="2dp"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:paddingStart="16dp"
+                    android:paddingTop="8dp"
                     android:paddingEnd="16dp"
-                    android:elevation="2dp" />
+                    android:paddingBottom="8dp"
+                    android:text="@string/button_addEntry"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp" />
             </LinearLayout>
         </ScrollView>
 
