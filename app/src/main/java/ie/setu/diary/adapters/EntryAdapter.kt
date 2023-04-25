@@ -3,6 +3,7 @@ package ie.setu.diary.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ie.setu.diary.databinding.CardEntryBinding
 import ie.setu.diary.models.DiaryModel
 
@@ -36,6 +37,7 @@ class EntryAdapter(private var entries: List<DiaryModel>, private val listener: 
             binding.description.text = entry.description
             binding.date.text = entry.date.toString()
             binding.root.setOnClickListener { listener.onEntryClick(entry) }
+            Picasso.get().load(entry.image).resize(200,200).into(binding.imageIcon)
             binding.btnDelete.setOnClickListener{ listener.onbtnDeleteClick(entry, adapterPosition)}
 
 
