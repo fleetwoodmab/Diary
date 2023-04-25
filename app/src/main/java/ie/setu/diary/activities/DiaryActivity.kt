@@ -2,6 +2,7 @@ package ie.setu.diary.activities
 
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -52,6 +53,9 @@ class DiaryActivity : AppCompatActivity() {
             Picasso.get()
                 .load(entry.image)
                 .into(binding.entryImage)
+            if (entry.image != Uri.EMPTY) {
+                binding.chooseImage.setText(R.string.change_entry_image)
+            }
         }
 
         binding.btnAdd.setOnClickListener() {
@@ -81,6 +85,7 @@ class DiaryActivity : AppCompatActivity() {
         binding.chooseImage.setOnClickListener {
             showImagePicker(imageIntentLauncher)
         }
+
         registerImagePickerCallback()
 
 
@@ -113,6 +118,7 @@ class DiaryActivity : AppCompatActivity() {
                             Picasso.get()
                                 .load(entry.image)
                                 .into(binding.entryImage)
+                            binding.chooseImage.setText(R.string.change_entry_image)
                         }
                     }
                     RESULT_CANCELED -> { } else -> { }

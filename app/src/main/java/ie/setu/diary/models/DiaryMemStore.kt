@@ -31,6 +31,7 @@ class DiaryMemStore : DiaryStore {
             foundEntry.title = entry.title
             foundEntry.description = entry.description
             foundEntry.date = entry.date
+            foundEntry.image = entry.image
             logAll()
         }
     }
