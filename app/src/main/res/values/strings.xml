@@ -2,6 +2,8 @@
     <string name="app_name">Reading Diary</string>
     <string name="button_addEntry">Add Entry</string>
     <string name="button_editEntry">Edit Entry</string>
+    <string name="button_addImage"> Add Image </string>
+    <string name="select_entry_image">Select entry image</string>
     <string name="hint_entryTitle">Book Title</string>
     <string name="hint_entryDescription">Review</string>
     <string name="hint_entryDate">Date finished </string>

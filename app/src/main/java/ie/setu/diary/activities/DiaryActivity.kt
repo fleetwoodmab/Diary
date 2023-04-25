@@ -1,13 +1,18 @@
 package ie.setu.diary.activities
 
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import ie.setu.diary.R
 import ie.setu.diary.databinding.ActivityDiaryBinding
+import ie.setu.diary.helpers.showImagePicker
 import ie.setu.diary.main.MainApp
 import ie.setu.diary.models.DiaryModel
 import timber.log.Timber.i
@@ -18,6 +23,8 @@ class DiaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDiaryBinding
     var entry = DiaryModel()
     lateinit var app : MainApp
+    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    val IMAGE_REQUEST = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +49,9 @@ class DiaryActivity : AppCompatActivity() {
             binding.entryTitle.setText(entry.title)
             binding.description.setText(entry.description)
             binding.btnAdd.text=getString(R.string.button_editEntry)
+            Picasso.get()
+                .load(entry.image)
+                .into(binding.entryImage)
         }
 
         binding.btnAdd.setOnClickListener() {
@@ -68,6 +78,12 @@ class DiaryActivity : AppCompatActivity() {
             }
         }
 
+        binding.chooseImage.setOnClickListener {
+            showImagePicker(imageIntentLauncher)
+        }
+        registerImagePickerCallback()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -83,6 +99,27 @@ class DiaryActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when(result.resultCode){
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Result ${result.data!!.data}")
+                            entry.image = result.data!!.data!!
+                            Picasso.get()
+                                .load(entry.image)
+                                .into(binding.entryImage)
+                        }
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
+
 
 }
 
