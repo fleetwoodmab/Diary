@@ -35,13 +35,16 @@ class DiaryMemStore : DiaryStore {
             logAll()
         }
     }
-    /*Word done here*/
-    override fun delete(entry: DiaryModel){
+  /*  override fun delete(entry: DiaryModel){
         var foundEntry: DiaryModel? = entries.find { p -> p.id == entry.id }
         if (foundEntry != null) {
             entries.remove(foundEntry)
         }
-    }
+    } */
+  override fun delete(entry: DiaryModel) {
+      entries.remove(entry)
+  }
+
 }
 
 

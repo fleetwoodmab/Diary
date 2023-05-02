@@ -17,5 +17,7 @@
 
     <string name="menu_addEntry">Log</string>
     <string name="menu_cancelEntry">Cancel</string>
+    <string name="menu_deleteEntry">Delete</string>
+
 
 </resources>
