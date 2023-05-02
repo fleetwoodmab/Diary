@@ -18,6 +18,8 @@ import ie.setu.diary.models.DiaryModel
 class EntriesListActivity : AppCompatActivity(), EntryListener {
     lateinit var app: MainApp
     private lateinit var binding: ActivityEntriesListBinding
+    private var position: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,7 @@ class EntriesListActivity : AppCompatActivity(), EntryListener {
     }
 
 
+
     private val getResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -60,20 +63,20 @@ class EntriesListActivity : AppCompatActivity(), EntryListener {
                 notifyItemRangeChanged(0,app.entries.findAll().size)
             }
         }
-    override fun onEntryClick(entry: DiaryModel) {
+
+    override fun onEntryClick(entry: DiaryModel, pos : Int) {
         val launcherIntent = Intent(this, DiaryActivity::class.java)
         launcherIntent.putExtra("entry_edit", entry)
+        position = pos
         getClickResult.launch(launcherIntent)
     }
-
-
-    override fun onbtnDeleteClick(entry: DiaryModel, position: Int) {
+    /*override fun onbtnDeleteClick(entry: DiaryModel, position: Int) {
         app.entries.delete(entry)
         (binding.recyclerView.adapter)?.
         notifyItemRemoved(position)
         (binding.recyclerView.adapter)?.
         notifyItemRangeChanged(position, app.entries.findAll().size)
-    }
+    }*/
 
 
     private val getClickResult =
@@ -84,7 +87,10 @@ class EntriesListActivity : AppCompatActivity(), EntryListener {
                 (binding.recyclerView.adapter)?.
                 notifyItemRangeChanged(0,app.entries.findAll().size)
             }
+            else // Deleting
+                if (it.resultCode == 99)     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
+
 }
 
 

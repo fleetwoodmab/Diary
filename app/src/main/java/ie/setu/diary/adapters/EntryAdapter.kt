@@ -8,8 +8,9 @@ import ie.setu.diary.databinding.CardEntryBinding
 import ie.setu.diary.models.DiaryModel
 
 interface EntryListener {
-    fun onEntryClick(entry: DiaryModel)
-    fun onbtnDeleteClick(entry: DiaryModel, position: Int)
+    fun onEntryClick(entry: DiaryModel, position : Int)
+    //fun onEntryClick(entry: DiaryModel)
+    //fun onbtnDeleteClick(entry: DiaryModel, position: Int)
 }
 class EntryAdapter(private var entries: List<DiaryModel>, private val listener: EntryListener) :
     RecyclerView.Adapter<EntryAdapter.MainHolder>() {
@@ -36,9 +37,9 @@ class EntryAdapter(private var entries: List<DiaryModel>, private val listener: 
             binding.entryTitle.text = entry.title
             binding.description.text = entry.description
             binding.date.text = entry.date.toString()
-            binding.root.setOnClickListener { listener.onEntryClick(entry) }
+            binding.root.setOnClickListener { listener.onEntryClick(entry, adapterPosition) }
             Picasso.get().load(entry.image).resize(200,200).into(binding.imageIcon)
-            binding.btnDelete.setOnClickListener{ listener.onbtnDeleteClick(entry, adapterPosition)}
+            binding.btnDelete.setOnClickListener{ listener.onEntryClick(entry, adapterPosition)}
 
 
 
