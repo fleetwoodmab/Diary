@@ -1,5 +1,6 @@
 package ie.setu.diary.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -10,45 +11,53 @@ import ie.setu.diary.R
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var usernameEditText: EditText
-    private lateinit var passwordEditText: EditText
+    private lateinit var username: EditText
+    private lateinit var password: EditText
     private lateinit var loginButton: Button
-
-    private fun isValid(username: String, password: String): Boolean {
-        return username.isNotEmpty() && password.length >= 6
-    }
-
-    private fun authenticate(username: String, password: String): Boolean {
-        // Replace the following with your actual authentication logic
-        return username == "myusername" && password == "mypassword"
-    }
+    private lateinit var signupButton: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        usernameEditText = findViewById(R.id.username_edit_text)
-        passwordEditText = findViewById(R.id.password_edit_text)
-        loginButton = findViewById(R.id.login_button)
+        username = findViewById(R.id.username)
+        password = findViewById(R.id.password)
+        loginButton = findViewById(R.id.loginButton)
+        signupButton = findViewById(R.id.signupButton)
+
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val savedUsername = sharedPreferences.getString("username", "")
+        val savedPassword = sharedPreferences.getString("password", "")
 
         loginButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
-            val password = passwordEditText.text.toString()
+            val enteredUsername = username.text.toString().trim()
+            val enteredPassword = password.text.toString().trim()
 
-            if (isValid(username, password)) {
-                if (authenticate(username, password)) {
-                    val intent = Intent(this, EntriesListActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
-                }
+            // Check if the entered username and password match the saved credentials
+            if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
+                Toast.makeText(this, "Please enter a username and password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (enteredUsername == savedUsername && enteredPassword == savedPassword) {
+                // Authentication successful, start the EntriesListActivity
+                val intent = Intent(this, EntriesListActivity::class.java)
+                startActivity(intent)
+                finish()
             } else {
-                Toast.makeText(this, "Please enter a valid username and password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
             }
         }
 
+        signupButton.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
 }
+
+
 
