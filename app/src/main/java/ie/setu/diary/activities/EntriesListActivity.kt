@@ -13,7 +13,6 @@ import ie.setu.diary.adapters.EntryAdapter
 import ie.setu.diary.adapters.EntryListener
 import ie.setu.diary.databinding.ActivityEntriesListBinding
 import ie.setu.diary.main.MainApp
-import ie.setu.diary.models.DiaryJSONStore
 import ie.setu.diary.models.DiaryModel
 
 class EntriesListActivity : AppCompatActivity(), EntryListener {
@@ -89,7 +88,7 @@ class EntriesListActivity : AppCompatActivity(), EntryListener {
                 (binding.recyclerView.adapter)?.
                 notifyItemRangeChanged(0,app.entries.findAll().size)
             }
-            else // Deleting
+            else
                 if (it.resultCode == 99)     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
 

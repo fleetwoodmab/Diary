@@ -36,10 +36,10 @@ class EntryAdapter(private var entries: List<DiaryModel>, private val listener: 
         fun bind(entry: DiaryModel, listener:EntryListener) {
             binding.entryTitle.text = entry.title
             binding.description.text = entry.description
-            binding.date.text = entry.date.toString()
+            binding.date.text = entry.date
             binding.root.setOnClickListener { listener.onEntryClick(entry, adapterPosition) }
             Picasso.get().load(entry.image).resize(200,200).into(binding.imageIcon)
-            binding.btnDelete.setOnClickListener{ listener.onEntryClick(entry, adapterPosition)}
+            binding.btnDelete.setOnClickListener{ listener.onbtnDeleteClick(entry, adapterPosition)}
 
 
 

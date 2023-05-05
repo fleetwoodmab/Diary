@@ -34,14 +34,13 @@ class LoginActivity : AppCompatActivity() {
             val enteredUsername = username.text.toString().trim()
             val enteredPassword = password.text.toString().trim()
 
-            // Check if the entered username and password match the saved credentials
+            // Check if credentials match saved credentials
             if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
                 Toast.makeText(this, "Please enter a username and password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (enteredUsername == savedUsername && enteredPassword == savedPassword) {
-                // Authentication successful, start the EntriesListActivity
                 val intent = Intent(this, EntriesListActivity::class.java)
                 startActivity(intent)
                 finish()

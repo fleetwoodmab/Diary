@@ -1,7 +1,6 @@
 package ie.setu.diary.activities
 
 import android.content.Intent
-import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,15 +17,16 @@ import ie.setu.diary.main.MainApp
 import ie.setu.diary.models.DiaryModel
 import timber.log.Timber.i
 import java.text.ParseException
-import java.util.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class DiaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDiaryBinding
     var entry = DiaryModel()
     lateinit var app : MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
-    val IMAGE_REQUEST = 1
     var edit = false
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,9 +42,6 @@ class DiaryActivity : AppCompatActivity() {
 
         app = application as MainApp
         i("Diary Activity started...")
-
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.UK)
-
 
 
         if (intent.hasExtra("entry_edit")) {
@@ -64,8 +61,8 @@ class DiaryActivity : AppCompatActivity() {
             entry.title = binding.entryTitle.text.toString()
             entry.description = binding.description.text.toString()
             try {
-                val date = dateFormat.parse(binding.date.text.toString())
-                entry.date = date
+                val date = LocalDate.parse(binding.date.text.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                entry.date = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
             } catch (e: ParseException) {
                 Snackbar.make(it,"Invalid date format. Please enter a date in the format dd/MMM/yyyy", Snackbar.LENGTH_LONG)
                     .show()
@@ -79,7 +76,7 @@ class DiaryActivity : AppCompatActivity() {
                 finish()
             }
             else {
-                Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+                Snackbar.make(it,"Please enter a title", Snackbar.LENGTH_LONG)
                     .show()
             }
         }

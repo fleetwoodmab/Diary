@@ -1,46 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="328dp"
+        android:layout_height="509dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/username"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/username_hint"/>
+            android:layout_height="85dp"
+            android:hint="@string/username_hint"
+            app:layout_constraintBottom_toTopOf="@id/password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="76dp"
+            android:hint="@string/password_hint"
             android:inputType="textPassword"
-            android:hint="@string/password_hint"/>
+            app:layout_constraintBottom_toTopOf="@id/confirmPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/username"/>
 
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_text"/>
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/signupButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Don't have an account? Sign up now"
-            android:textColor="@color/colorAccent"
-            android:layout_marginBottom="16dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_text"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="36dp"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account?"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/signupButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/signup_text"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_gravity="center_horizontal"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-

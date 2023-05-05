@@ -29,26 +29,26 @@ class SignupActivity : AppCompatActivity() {
             val password = password.text.toString()
             val confirmPassword = confirmPassword.text.toString()
 
-            // Check that the username and password fields are not empty
+            // Check that fields are not empty
             if (username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
                 Toast.makeText(this, "Please enter a username and password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Check that the password and confirm password fields match
+            // Check that password and confirm password fields match
             if (password != confirmPassword) {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Store the new user's credentials
+            // Store new user's credentials
             val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString("username", username)
             editor.putString("password", password)
             editor.apply()
 
-            // Return to the login screen
+            // Return to login screen
             finish()
         }
 
