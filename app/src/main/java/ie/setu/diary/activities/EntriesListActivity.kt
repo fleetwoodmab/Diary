@@ -13,12 +13,14 @@ import ie.setu.diary.adapters.EntryAdapter
 import ie.setu.diary.adapters.EntryListener
 import ie.setu.diary.databinding.ActivityEntriesListBinding
 import ie.setu.diary.main.MainApp
+import ie.setu.diary.models.DiaryJSONStore
 import ie.setu.diary.models.DiaryModel
 
 class EntriesListActivity : AppCompatActivity(), EntryListener {
     lateinit var app: MainApp
     private lateinit var binding: ActivityEntriesListBinding
     private var position: Int = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

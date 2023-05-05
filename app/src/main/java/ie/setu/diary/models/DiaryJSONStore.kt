@@ -68,6 +68,8 @@ class DiaryJSONStore(private val context: Context) : DiaryStore {
         serialize()
     }
 
+
+
     private fun logAll() {
         entries.forEach { Timber.i("$it") }
     }
