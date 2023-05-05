@@ -48,6 +48,7 @@ class DiaryActivity : AppCompatActivity() {
             entry = intent.extras?.getParcelable("entry_edit")!!
             binding.entryTitle.setText(entry.title)
             binding.description.setText(entry.description)
+            binding.date.setText(entry.date)
             binding.btnAdd.text=getString(R.string.button_editEntry)
             Picasso.get()
                 .load(entry.image)
