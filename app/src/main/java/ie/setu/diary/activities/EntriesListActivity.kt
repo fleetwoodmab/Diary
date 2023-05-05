@@ -72,13 +72,13 @@ class EntriesListActivity : AppCompatActivity(), EntryListener {
         position = pos
         getClickResult.launch(launcherIntent)
     }
-    /*override fun onbtnDeleteClick(entry: DiaryModel, position: Int) {
+    override fun onbtnDeleteClick(entry: DiaryModel, position: Int) {
         app.entries.delete(entry)
         (binding.recyclerView.adapter)?.
         notifyItemRemoved(position)
         (binding.recyclerView.adapter)?.
         notifyItemRangeChanged(position, app.entries.findAll().size)
-    }*/
+    }
 
 
     private val getClickResult =

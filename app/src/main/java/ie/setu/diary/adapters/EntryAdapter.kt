@@ -10,7 +10,7 @@ import ie.setu.diary.models.DiaryModel
 interface EntryListener {
     fun onEntryClick(entry: DiaryModel, position : Int)
     //fun onEntryClick(entry: DiaryModel)
-    //fun onbtnDeleteClick(entry: DiaryModel, position: Int)
+    fun onbtnDeleteClick(entry: DiaryModel, position: Int)
 }
 class EntryAdapter(private var entries: List<DiaryModel>, private val listener: EntryListener) :
     RecyclerView.Adapter<EntryAdapter.MainHolder>() {
