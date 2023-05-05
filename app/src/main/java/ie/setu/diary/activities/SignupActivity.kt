@@ -1,6 +1,8 @@
 package ie.setu.diary.activities
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -46,10 +48,12 @@ class SignupActivity : AppCompatActivity() {
             val editor = sharedPreferences.edit()
             editor.putString("username", username)
             editor.putString("password", password)
-            editor.apply()
+            editor.commit()
 
             // Return to login screen
-            finish()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
         }
 
     }
