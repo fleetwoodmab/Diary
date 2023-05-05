@@ -20,6 +20,10 @@
     <string name="password_hint">Password</string>
     <string name="login_text">Login</string>
 
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="signup_text">Signup</string>
+
+
 
 
 </resources>
